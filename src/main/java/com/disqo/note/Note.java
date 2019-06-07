@@ -1,8 +1,10 @@
 package com.disqo.note;
 
 import com.disqo.core.BaseEntity;
+import com.disqo.user.User;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -15,6 +17,9 @@ public class Note extends BaseEntity {
     @Size(max = 1000)
     private String note;
 
+    @ManyToOne
+    private User owner;
+
     protected Note(){
         super();
     }
@@ -23,6 +28,14 @@ public class Note extends BaseEntity {
         this();
         this.title = title;
         this.note = note;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public String getTitle() {
